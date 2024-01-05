@@ -104,6 +104,8 @@ st.set_page_config(
 )
 
 st.title("Hungarian Heart Disease")
+st.title("Nur Ryan Dwi Cahyo")
+st.title("A11.2020.12610")
 st.write(f"**_Model's Accuracy_** :  :green[**{accuracy}**]% (:red[_Do not copy outright_])")
 st.write("")
 
