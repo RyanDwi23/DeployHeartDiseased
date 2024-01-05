@@ -138,10 +138,10 @@ st.markdown("<h1 style='text-align: center; color: #333366;'>Hungarian Heart Dis
 
 # Menampilkan akurasi model dengan warna dan format yang menarik
 st.markdown(f"**_Model's Accuracy_**: <span style='color: green; font-weight: bold;'>{accuracy}%</span> <span style='color: red;'>[_Do not copy outright_]</span>", unsafe_allow_html=True)
-st.write("------------------------------------------------")
+st.text("------------------------------------------------------------------------------------------------")
 st.markdown(f"**Nur Ryan Dwi Cahyo**", unsafe_allow_html=True)
 st.markdown(f"**A11.2020.12610**", unsafe_allow_html=True)
-st.text("------------------------------------------------")
+st.text("------------------------------------------------------------------------------------------------")
 
 #Membuat dua tab pada tampilan dashboard
 tab1, tab2 = st.tabs(["Single-predict", "Multi-predict"])
