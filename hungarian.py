@@ -111,6 +111,20 @@ st.title("A11.2020.12610")
 st.write(f"**_Model's Accuracy_** :  :green[**{accuracy}**]% (:red[_Do not copy outright_])")
 st.write("")
 
+# STREAMLIT
+st.set_page_config(
+  page_title="Hungarian Heart Disease",
+  page_icon=":heart:"
+)
+
+# Header dengan warna dan efek teks
+st.markdown("<h1 style='text-align: center; color: #333366;'>Hungarian Heart Disease</h1>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #4a90e2;'>Nur Ryan Dwi Cahyo</h2>")
+st.markdown("<h3 style='text-align: center; color: #ff6347;'>A11.2020.12610</h3>")
+
+# Menampilkan akurasi model dengan warna dan format yang menarik
+st.markdown(f"**_Model's Accuracy_**: <span style='color: green; font-weight: bold;'>{accuracy}%</span> <span style='color: red;'>[_Do not copy outright_]</span>", unsafe_allow_html=True)
+
 tab1, tab2 = st.tabs(["Single-predict", "Multi-predict"])
 
 with tab1:
