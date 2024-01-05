@@ -141,7 +141,7 @@ st.markdown(f"**_Model's Accuracy_**: <span style='color: green; font-weight: bo
 st.write("------------------------------------------------")
 st.markdown(f"**Nur Ryan Dwi Cahyo**", unsafe_allow_html=True)
 st.markdown(f"**A11.2020.12610**", unsafe_allow_html=True)
-st.sidebar.text("------------------------------------------------")
+st.write("------------------------------------------------")
 
 #Membuat dua tab pada tampilan dashboard
 tab1, tab2 = st.tabs(["Single-predict", "Multi-predict"])
