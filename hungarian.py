@@ -1,3 +1,4 @@
+#Import Library
 import itertools
 import pandas as pd
 import numpy as np
@@ -12,23 +13,22 @@ import pickle
 # Fungsi untuk mengatur tampilan Streamlit
 #st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
-
+# Fungsi untuk memanggil dataset 'Hungarian.data'
 with open("data/hungarian.data", encoding='Latin1') as file:
   lines = [line.strip() for line in file]
 
+#Kode itertools.takewhile digunakan untuk mengambil elemen-elemen dari suatu iterable (dalam konteks ini, tampaknya daftar lines) sampai suatu kondisi tertentu terpenuhi.
 data = itertools.takewhile(
   lambda x: len(x) == 76,
   (' '.join(lines[i:(i + 10)]).split() for i in range(0, len(lines), 10))
 )
 
+#pembentukan DataFrame, beberapa operasi pengolahan data dilakukan. Pertama, hanya kolom-kolom tertentu yang dipilih untuk analisis selanjutnya dengan menggunakan indeks tertentu. Kemudian, beberapa kolom tertentu dihilangkan dari DataFrame untuk tujuan analisis lebih lanjut. Setelah itu, semua nilai dalam DataFrame diubah menjadi tipe data float untuk konsistensi. Terakhir, semua nilai -9.0 dalam DataFrame digantikan dengan NaN untuk menandai nilai yang hilang atau tidak valid.
 df = pd.DataFrame.from_records(data)
-
 df = df.iloc[:, :-1]
 df = df.drop(df.columns[0], axis=1)
 df = df.astype(float)
-
 df.replace(-9.0, np.NaN, inplace=True)
-
 df_selected = df.iloc[:, [1, 2, 7, 8, 10, 14, 17, 30, 36, 38, 39, 42, 49, 56]]
 
 column_mapping = {
@@ -332,5 +332,6 @@ with tab2:
       st.dataframe(uploaded_df)
     
 
+#Memberikan text copyright
 st.markdown("<p style='text-align: center; color: #777;'>Copyright © 2024 by Nur Ryan Dwi Cahyo. All rights reserved.</p>", unsafe_allow_html=True)
 
