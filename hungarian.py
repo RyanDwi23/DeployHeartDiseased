@@ -31,6 +31,7 @@ df = df.astype(float)
 df.replace(-9.0, np.NaN, inplace=True)
 df_selected = df.iloc[:, [1, 2, 7, 8, 10, 14, 17, 30, 36, 38, 39, 42, 49, 56]]
 
+#Perintah untuk labeling
 column_mapping = {
   2: 'age',
   3: 'sex',
@@ -48,11 +49,14 @@ column_mapping = {
   57: 'target'
 }
 
+#df_selected.rename(columns=column_mapping, inplace=True) mengubah nama kolom dari sebuah dataframe yang disimpan dalam variabel df_selected berdasarkan pemetaan kolom yang didefinisikan sebelumnya dalam column_mapping. 
+#Selanjutnya, columns_to_drop = ['ca', 'slope','thal'] mendefinisikan daftar nama kolom yang perlu dihapus dari dataframe. Kemudian, menggunakan df_selected = df_selected.drop(columns_to_drop, axis=1), kolom-kolom yang disebutkan dalam columns_to_drop dihapus dari dataframe df_selected. 
 df_selected.rename(columns=column_mapping, inplace=True)
-
 columns_to_drop = ['ca', 'slope','thal']
 df_selected = df_selected.drop(columns_to_drop, axis=1)
 
+#variabel-variabel seperti meanTBPS, meanChol, meanfbs, meanRestCG, meanthalach, dan meanexang 
+#digunakan untuk menghitung rata-rata dari kolom-kolom tertentu dalam df_selected setelah menghapus nilai yang hilang (NaN) dari masing-masing kolom tersebut.
 meanTBPS = df_selected['trestbps'].dropna()
 meanChol = df_selected['chol'].dropna()
 meanfbs = df_selected['fbs'].dropna()
@@ -60,6 +64,7 @@ meanRestCG = df_selected['restecg'].dropna()
 meanthalach = df_selected['thalach'].dropna()
 meanexang = df_selected['exang'].dropna()
 
+#Mengubah tipe data menjadi float
 meanTBPS = meanTBPS.astype(float)
 meanChol = meanChol.astype(float)
 meanfbs = meanfbs.astype(float)
@@ -67,6 +72,8 @@ meanthalach = meanthalach.astype(float)
 meanexang = meanexang.astype(float)
 meanRestCG = meanRestCG.astype(float)
 
+#menghitung rata-rata dari beberapa variabel kardiovaskular seperti tekanan darah, kolesterol, gula darah, denyut jantung maksimal, angina yang diinduksi oleh latihan, 
+#dan elektrokardiogram istirahat, lalu membulatkannya ke bilangan bulat terdekat.
 meanTBPS = round(meanTBPS.mean())
 meanChol = round(meanChol.mean())
 meanfbs = round(meanfbs.mean())
@@ -74,6 +81,8 @@ meanthalach = round(meanthalach.mean())
 meanexang = round(meanexang.mean())
 meanRestCG = round(meanRestCG.mean())
 
+#menciptakan sebuah kamus (dictionary) yang berisi rata-rata nilai dari beberapa variabel kardiovaskular yang sebelumnya dihitung, 
+#yang akan digunakan untuk mengisi nilai-nilai yang hilang dalam data set yang sedang diproses.
 fill_values = {
   'trestbps': meanTBPS,
   'chol': meanChol,
@@ -83,17 +92,18 @@ fill_values = {
   'restecg':meanRestCG
 }
 
+#mengisi nilai-nilai yang hilang dalam dataframe yang telah dipilih dengan rata-rata yang telah dihitung, menghapus duplikat baris, melakukan oversampling menggunakan teknik SMOTE untuk menyeimbangkan kelas target, 
+#dan akhirnya memuat model prediksi dari file yang disimpan sebelumnya.
 df_clean = df_selected.fillna(value=fill_values)
 df_clean.drop_duplicates(inplace=True)
-
 X = df_clean.drop("target", axis=1)
 y = df_clean['target']
-
 smote = SMOTE(random_state=42)
 X, y = smote.fit_resample(X, y)
-
 model = pickle.load(open("model/xgb_model.pkl", 'rb'))
 
+#melakukan prediksi menggunakan model yang telah dimuat, menghitung akurasi prediksi terhadap data aktual, 
+#dan menyimpan hasil prediksi beserta label target ke dalam dataframe akhir.
 y_pred = model.predict(X)
 accuracy = accuracy_score(y, y_pred)
 accuracy = round((accuracy * 100), 2)
@@ -131,15 +141,20 @@ st.markdown(f"**_Model's Accuracy_**: <span style='color: green; font-weight: bo
 st.markdown(f"**Nur Ryan Dwi Cahyo**", unsafe_allow_html=True)
 st.markdown(f"**A11.2020.12610**", unsafe_allow_html=True)
 
+#Membuat dua tab pada tampilan dashboard
 tab1, tab2 = st.tabs(["Single-predict", "Multi-predict"])
 
+#Konfigurasi pada tab pertama
 with tab1:
+  #Judul
   st.sidebar.header("**User Input** Sidebar")
-
+  
+  # untuk memungkinkan pengguna memasukkan nilai usia (age) dengan batasan minimum dan maksimum yang berasal dari dataframe df_final.
   age = st.sidebar.number_input(label=":violet[**Age**]", min_value=df_final['age'].min(), max_value=df_final['age'].max())
   st.sidebar.write(f":orange[Min] value: :orange[**{df_final['age'].min()}**], :red[Max] value: :red[**{df_final['age'].max()}**]")
   st.sidebar.write("")
 
+  #memungkinkan pengguna memilih jenis kelamin (sex) melalui dropdown sidebar di Streamlit, lalu mengkonversi pilihan tersebut menjadi nilai numerik dengan 1 untuk "Male" dan 0 untuk "Female".
   sex_sb = st.sidebar.selectbox(label=":violet[**Sex**]", options=["Male", "Female"])
   st.sidebar.write("")
   st.sidebar.write("")
@@ -150,6 +165,7 @@ with tab1:
   # -- Value 0: Female
   # -- Value 1: Male
 
+  #memungkinkan pengguna memilih tipe nyeri dada (chest pain type) melalui dropdown sidebar di Streamlit dan mengkonversi pilihan tersebut menjadi nilai numerik, dengan kategorisasi yang telah ditentukan dari 1 hingga 4 berdasarkan jenis nyeri dada yang dipilih.
   cp_sb = st.sidebar.selectbox(label=":violet[**Chest pain type**]", options=["Typical angina", "Atypical angina", "Non-anginal pain", "Asymptomatic"])
   st.sidebar.write("")
   st.sidebar.write("")
@@ -166,6 +182,8 @@ with tab1:
   # -- Value 3: non-anginal pain
   # -- Value 4: asymptomatic
 
+
+  # input angka pada sidebar Streamlit untuk memungkinkan pengguna memasukkan tekanan darah istirahat (resting blood pressure) dengan batasan minimum dan maksimum yang diberikan oleh nilai minimal dan maksimal dari kolom trestbps dalam dataframe df_final.
   trestbps = st.sidebar.number_input(label=":violet[**Resting blood pressure** (in mm Hg on admission to the hospital)]", min_value=df_final['trestbps'].min(), max_value=df_final['trestbps'].max())
   st.sidebar.write(f":orange[Min] value: :orange[**{df_final['trestbps'].min()}**], :red[Max] value: :red[**{df_final['trestbps'].max()}**]")
   st.sidebar.write("")
@@ -184,6 +202,8 @@ with tab1:
   # -- Value 0: false
   # -- Value 1: true
 
+  #memungkinkan pengguna memilih hasil elektrokardiograf (electrocardiographic results) istirahat melalui dropdown sidebar di Streamlit dan 
+  #mengonversi pilihan tersebut menjadi nilai numerik berdasarkan kategori yang telah ditentukan.
   restecg_sb = st.sidebar.selectbox(label=":violet[**Resting electrocardiographic results**]", options=["Normal", "Having ST-T wave abnormality", "Showing left ventricular hypertrophy"])
   st.sidebar.write("")
   st.sidebar.write("")
@@ -197,6 +217,7 @@ with tab1:
   # -- Value 1: having ST-T wave abnormality (T wave inversions and/or ST  elevation or depression of > 0.05 mV)
   # -- Value 2: showing probable or definite left ventricular hypertrophy by Estes' criteria
 
+  #memungkinkan pengguna memasukkan nilai denyut jantung maksimal (maximum heart rate achieved) melalui input angka pada sidebar Streamlit dengan batasan minimum dan maksimum yang diberikan oleh kolom thalach dalam dataframe df_final, serta memungkinkan pengguna memilih apakah terdapat angina yang diinduksi oleh latihan fisik melalui dropdown sidebar, yang kemudian dikonversi menjadi nilai biner 0 atau 1.
   thalach = st.sidebar.number_input(label=":violet[**Maximum heart rate achieved**]", min_value=df_final['thalach'].min(), max_value=df_final['thalach'].max())
   st.sidebar.write(f":orange[Min] value: :orange[**{df_final['thalach'].min()}**], :red[Max] value: :red[**{df_final['thalach'].max()}**]")
   st.sidebar.write("")
@@ -211,10 +232,12 @@ with tab1:
   # -- Value 0: No
   # -- Value 1: Yes
 
+  #nput angka pada sidebar Streamlit untuk memungkinkan pengguna memasukkan nilai depresi ST yang diinduksi oleh latihan fisik relatif terhadap istirahat, dengan batasan minimum dan maksimum yang diberikan oleh kolom oldpeak dalam dataframe df_final.
   oldpeak = st.sidebar.number_input(label=":violet[**ST depression induced by exercise relative to rest**]", min_value=df_final['oldpeak'].min(), max_value=df_final['oldpeak'].max())
   st.sidebar.write(f":orange[Min] value: :orange[**{df_final['oldpeak'].min()}**], :red[Max] value: :red[**{df_final['oldpeak'].max()}**]")
   st.sidebar.write("")
 
+  #mengumpulkan semua data masukan yang telah dimasukkan oleh pengguna ke dalam sebuah kamus (dictionary), lalu mengonversinya menjadi sebuah DataFrame dengan satu baris dan menampilkannya dalam dua bagian terpisah untuk presentasi yang lebih rapi melalui antarmuka Streamlit.
   data = {
     'Age': age,
     'Sex': sex_sb,
@@ -242,6 +265,8 @@ with tab1:
   predict_btn = st.button("**Predict**", type="primary")
 
   st.write("")
+
+  #mengambil input dari pengguna untuk sejumlah variabel kesehatan, memprediksi status penyakit jantung berdasarkan model yang telah dilatih, menampilkan status prediksi dengan indikator kemajuan dan hasilnya dalam antarmuka Streamlit.
   if predict_btn:
     inputs = [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak]]
     prediction = model.predict(inputs)[0]
@@ -274,9 +299,12 @@ with tab1:
   st.subheader("Prediction:")
   st.subheader(result)
 
+#Konfigurasi pada tab kedua
 with tab2:
+  #judul
   st.header("Predict multiple data:")
 
+  #mengambil lima baris pertama dari dataframe df_final, mengonversinya ke format CSV, dan menyediakan opsi bagi pengguna untuk mengunduh file CSV contoh atau mengunggah file CSV melalui antarmuka Streamlit.
   sample_csv = df_final.iloc[:5, :-1].to_csv(index=False).encode('utf-8')
 
   st.write("")
@@ -286,6 +314,7 @@ with tab2:
   st.write("")
   file_uploaded = st.file_uploader("Upload a CSV file", type='csv')
 
+  #membaca file CSV tersebut ke dalam dataframe, memprediksi status penyakit jantung untuk setiap baris menggunakan model yang telah dilatih, dan menampilkan status proses prediksi dalam antarmuka Streamlit.
   if file_uploaded:
     uploaded_df = pd.read_csv(file_uploaded)
     prediction_arr = model.predict(uploaded_df)
@@ -300,6 +329,7 @@ with tab2:
 
     result_arr = []
 
+    #mengkonversi setiap prediksi menjadi kategori status penyakit jantung, memvisualisasikan hasil prediksi dalam bentuk dataframe dan menampilkan dataframe yang diunggah oleh pengguna di antarmuka Streamlit dalam dua kolom yang berbeda.
     for prediction in prediction_arr:
       if prediction == 0:
         result = "Healthy"
