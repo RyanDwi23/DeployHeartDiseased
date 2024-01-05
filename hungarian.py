@@ -106,6 +106,17 @@ st.set_page_config(
   page_icon=":heart:"
 )
 
+st.markdown(
+    """
+    <style>
+        body {
+            background-color: #D1EEE2;
+        }
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
+
 # Header dengan warna dan efek teks
 st.markdown("<h1 style='text-align: center; color: #333366;'>Hungarian Heart Disease</h1>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: left; color: #333366;'>Nur Ryan Dwi Cahyo</h2>", unsafe_allow_html=True)
