@@ -312,3 +312,6 @@ with tab2:
       st.dataframe(uploaded_result)
     with col2:
       st.dataframe(uploaded_df)
+
+st.markdown("<p style='text-align: center; color: #777;'>Copyright © 2024 by Nur Ryan Dwi Cahyo. All rights reserved.</p>", unsafe_allow_html=True)
+
