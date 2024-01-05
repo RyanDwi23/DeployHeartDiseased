@@ -133,7 +133,7 @@ st.markdown(
 
 
 # Header dengan warna dan efek teks
-st.markdown("<h1 style='text-align: left; color: #333366;'>Hungarian Heart Disease</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #333366;'>Hungarian Heart Disease</h1>", unsafe_allow_html=True)
 
 st.image("https://media.sciencephoto.com/image/f0209526/800wm/F0209526-Heart_disease,_illustration.jpg", width=500)
 # Menampilkan akurasi model dengan warna dan format yang menarik
