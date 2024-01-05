@@ -107,12 +107,24 @@ st.set_page_config(
   page_icon=":heart:"
 )
 
-# Row A
-st.markdown('### Metrics')
-col1, col2, col3 = st.columns(3)
-col1.metric("Temperature", "70 °F", "1.2 °F")
-col2.metric("Wind", "9 mph", "-8%")
-col3.metric("Humidity", "86%", "4%")
+st.markdown(
+    """
+    <style>
+        body::after {
+            content: "Nur Ryan Dwi Cahyo";
+            opacity: 0.2;  /* Anda bisa atur opasitas sesuai keinginan */
+            font-size: 5em;  /* Ukuran font */
+            position: fixed;  /* Penempatan watermark */
+            bottom: 10%;  /* Jarak dari bawah */
+            right: 10%;  /* Jarak dari kanan */
+            z-index: -1;  /* Pastikan watermark berada di belakang konten lainnya */
+            transform: rotate(-30deg);  /* Rotasi teks jika Anda inginkan */
+            color: #555555;  /* Warna teks watermark */
+        }
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
 
 
 # Header dengan warna dan efek teks
