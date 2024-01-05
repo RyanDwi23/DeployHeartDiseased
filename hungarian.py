@@ -8,7 +8,7 @@ import time
 import pickle
 
 # Fungsi untuk mengatur tampilan Streamlit
-#st.set_page_config(layout='wide', initial_sidebar_state='expanded')
+st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
 
 with open("data/hungarian.data", encoding='Latin1') as file:
