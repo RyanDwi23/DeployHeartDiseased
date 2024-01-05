@@ -109,6 +109,15 @@ st.set_page_config(
   page_icon=":heart:"
 )
 
+# Menambahkan style untuk mengatur warna background
+st.markdown("""
+    <style>
+        body {
+            background-color: #F5DD9B;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
 
 # Header dengan warna dan efek teks
 st.markdown("<h1 style='text-align: center; color: #333366;'>Hungarian Heart Disease</h1>", unsafe_allow_html=True)
