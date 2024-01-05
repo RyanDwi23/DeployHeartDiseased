@@ -135,7 +135,7 @@ st.markdown(
 # Header dengan warna dan efek teks
 st.markdown("<h1 style='text-align: center; color: #333366;'>Hungarian Heart Disease</h1>", unsafe_allow_html=True)
 
-st.image("https://img.freepik.com/free-vector/doctor-with-stethoscope-listening-huge-heart-beat-ischemic-heart-disease_335657-4397.jpg?w=996&t=st=1704173675~exp=1704174275~hmac=0f712a91cf89a887e75df001cbe07e2b56b7159dd56890783fc07a5d43841b76", width=500)
+st.image("https://media.sciencephoto.com/image/f0209526/800wm/F0209526-Heart_disease,_illustration.jpg", width=500)
 # Menampilkan akurasi model dengan warna dan format yang menarik
 st.markdown(f"**_Model's Accuracy_**: <span style='color: green; font-weight: bold;'>{accuracy}%</span> <span style='color: red;'>[_Do not copy outright_]</span>", unsafe_allow_html=True)
 st.text("------------------------------------------------------------------------------------------------")
