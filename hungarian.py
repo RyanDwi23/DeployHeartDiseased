@@ -110,13 +110,16 @@ st.set_page_config(
 )
 
 # Menambahkan style untuk mengatur warna background
-st.markdown("""
+st.markdown(
+    """
     <style>
         body {
-            background-color: #F5DD9B;
+            background-color: #F5DD9B !important;
         }
     </style>
-    """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True
+)
+
 
 
 # Header dengan warna dan efek teks
