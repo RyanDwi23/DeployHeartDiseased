@@ -114,10 +114,6 @@ col1.metric("Temperature", "70 °F", "1.2 °F")
 col2.metric("Wind", "9 mph", "-8%")
 col3.metric("Humidity", "86%", "4%")
 
-# Row B
-seattle_weather = pd.read_csv('https://raw.githubusercontent.com/tvst/plost/master/data/seattle-weather.csv', parse_dates=['date'])
-stocks = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/stocks_toy.csv')
-
 
 # Header dengan warna dan efek teks
 st.markdown("<h1 style='text-align: center; color: #333366;'>Hungarian Heart Disease</h1>", unsafe_allow_html=True)
