@@ -7,6 +7,25 @@ import streamlit as st
 import time
 import pickle
 
+st.markdown(
+    """
+    <style>
+        body::after {
+            content: "Nur Ryan Dwi Cahyo";
+            opacity: 0.2;  /* Anda bisa atur opasitas sesuai keinginan */
+            font-size: 5em;  /* Ukuran font */
+            position: fixed;  /* Penempatan watermark */
+            bottom: 10%;  /* Jarak dari bawah */
+            right: 10%;  /* Jarak dari kanan */
+            z-index: -1;  /* Pastikan watermark berada di belakang konten lainnya */
+            transform: rotate(-30deg);  /* Rotasi teks jika Anda inginkan */
+            color: #555555;  /* Warna teks watermark */
+        }
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
+
 # Fungsi untuk mengatur tampilan Streamlit
 #st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
@@ -105,25 +124,6 @@ df_final['target'] = y
 st.set_page_config(
   page_title="Hungarian Heart Disease",
   page_icon=":heart:"
-)
-
-st.markdown(
-    """
-    <style>
-        body::after {
-            content: "Nur Ryan Dwi Cahyo";
-            opacity: 0.2;  /* Anda bisa atur opasitas sesuai keinginan */
-            font-size: 5em;  /* Ukuran font */
-            position: fixed;  /* Penempatan watermark */
-            bottom: 10%;  /* Jarak dari bawah */
-            right: 10%;  /* Jarak dari kanan */
-            z-index: -1;  /* Pastikan watermark berada di belakang konten lainnya */
-            transform: rotate(-30deg);  /* Rotasi teks jika Anda inginkan */
-            color: #555555;  /* Warna teks watermark */
-        }
-    </style>
-    """, 
-    unsafe_allow_html=True
 )
 
 
