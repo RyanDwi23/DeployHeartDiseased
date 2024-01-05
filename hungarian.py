@@ -100,7 +100,7 @@ X = df_clean.drop("target", axis=1)
 y = df_clean['target']
 smote = SMOTE(random_state=42)
 X, y = smote.fit_resample(X, y)
-model = pickle.load(open("model/xgb_model.pkl", 'rb'))
+model = pickle.load(open("combination_model.pkl", 'rb'))
 
 #melakukan prediksi menggunakan model yang telah dimuat, menghitung akurasi prediksi terhadap data aktual, 
 #dan menyimpan hasil prediksi beserta label target ke dalam dataframe akhir.
