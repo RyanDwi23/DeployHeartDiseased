@@ -7,39 +7,7 @@ import streamlit as st
 import time
 import pickle
 # Fungsi untuk mengatur tampilan Streamlit
-def set_custom_style():
-    st.markdown("""
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-            }
-            .sidebar .sidebar-content {
-                background-color: #f7f7f7;
-                padding: 15px;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
-            .stNumberInput label, .stSelectbox label {
-                font-weight: bold;
-                color: #333366;
-            }
-            .stButton > button {
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-            }
-        </style>
-    """, unsafe_allow_html=True)
 
-set_custom_style()
 
 with open("data/hungarian.data", encoding='Latin1') as file:
   lines = [line.strip() for line in file]
