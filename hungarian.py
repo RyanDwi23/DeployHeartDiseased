@@ -6,6 +6,17 @@ from sklearn.metrics import accuracy_score
 import streamlit as st
 import time
 import pickle
+
+st.markdown(
+    """
+    <style>
+        body {
+            background-color: #D1EEE2;
+        }
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
 # Fungsi untuk mengatur tampilan Streamlit
 
 
