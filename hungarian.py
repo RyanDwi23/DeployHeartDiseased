@@ -99,8 +99,6 @@ df_final['target'] = y
 
 # ========================================================================================================================================================================================
 
-
-
 # STREAMLIT
 st.set_page_config(
   page_title="Hungarian Heart Disease",
@@ -109,8 +107,8 @@ st.set_page_config(
 
 # Header dengan warna dan efek teks
 st.markdown("<h1 style='text-align: center; color: #333366;'>Hungarian Heart Disease</h1>", unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center; color: #4a90e2;'>Nur Ryan Dwi Cahyo</h2>")
-st.markdown("<h3 style='text-align: center; color: #ff6347;'>A11.2020.12610</h3>")
+st.markdown("<h1 style='text-align: left; color: #4a90e2;'>Nur Ryan Dwi Cahyo</h1>")
+st.markdown("<h1 style='text-align: left; color: #ff6347;'>A11.2020.12610</h1>")
 
 # Menampilkan akurasi model dengan warna dan format yang menarik
 st.markdown(f"**_Model's Accuracy_**: <span style='color: green; font-weight: bold;'>{accuracy}%</span> <span style='color: red;'>[_Do not copy outright_]</span>", unsafe_allow_html=True)
