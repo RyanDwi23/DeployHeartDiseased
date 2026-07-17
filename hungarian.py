@@ -139,8 +139,6 @@ st.image("https://media.sciencephoto.com/image/f0209526/800wm/F0209526-Heart_dis
 # Menampilkan akurasi model dengan warna dan format yang menarik
 st.markdown(f"**_Model's Accuracy_**: <span style='color: green; font-weight: bold;'>KNN with K=3 ~ Accuracy: 87%</span> <span style='color: red;'>[_Do not copy outright_]</span>", unsafe_allow_html=True)
 st.text("------------------------------------------------------------------------------------------------")
-st.markdown(f"**Nur Ryan Dwi Cahyo**", unsafe_allow_html=True)
-st.markdown(f"**P31.2024.02642**", unsafe_allow_html=True)
 st.text("------------------------------------------------------------------------------------------------")
 
 #Membuat dua tab pada tampilan dashboard
@@ -365,5 +363,5 @@ with tab2:
     
 
 #Memberikan text copyright
-st.markdown("<p style='text-align: center; color: #777;'>Copyright © 2025 by Nur Ryan Dwi Cahyo. All rights reserved.</p>", unsafe_allow_html=True)
+#st.markdown("<p style='text-align: center; color: #777;'>Copyright © 2025 by Nur Ryan Dwi Cahyo. All rights reserved.</p>", unsafe_allow_html=True)
 
